@@ -3,4 +3,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://YOUR-USERNAME.github.io/pixel-parlour/sitemap.xml
+Sitemap: https://pixelparlour.online/sitemap.xml
