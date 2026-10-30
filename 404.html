@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--
+    404 PAGE: WHY THERE IS A <base> SCRIPT HERE
+    GitHub Pages serves this file for ANY missing URL, at that URL. For a project site a visitor
+    might land on https://username.github.io/pixel-parlour/old/deep/link, and plain relative paths
+    like "css/base.css" would then resolve to /pixel-parlour/old/deep/css/base.css and 404 too.
+
+    Chosen approach: <base>, set by this tiny inline script BEFORE any stylesheet, script, icon
+    or link appears in the document, so every relative URL below resolves from the site root:
+      1. URL ends in /404.html (direct visit, local server, any subfolder): root = that folder.
+      2. *.github.io: root = first path segment, e.g. /pixel-parlour/ (project site).
+      3. Anything else (custom domain): root = "/".
+      Set SITE_ROOT if your hosting differs (e.g. custom domain in a subfolder, or a
+      username.github.io user site: SITE_ROOT = "/").
+    Opened from disk (file://) or with JavaScript off, no <base> is added. Relative paths still
+    work there because this file sits next to css/, js/ and assets/ (and on GitHub Pages a
+    one-level-deep miss like /pixel-parlour/typo also resolves correctly without it).
+    Same-page "#hash" links (the skip link) are rewritten after load so <base> doesn't send
+    them to the home page. Navigation links ("index.html", etc.) are unaffected and resolve
+    against the site root, which is exactly what we want.
+
+    The stylesheets and scripts are written by this same script (after <base> exists) instead of
+    sitting in the HTML, because the browser's preload scanner reads ahead and would otherwise
+    request css/... and js/... against the deep URL first (harmless, but noisy 404s in the
+    console). The <noscript> block below keeps the page styled when JavaScript is off.
+  -->
+  <script>
+    (function () {
+      var SITE_ROOT = ""; // optional manual override, e.g. "/pixel-parlour/"
+      var loc = window.location;
+      if (loc.protocol === "file:") return; // relative paths already work from disk
+
+      var root = SITE_ROOT;
+      if (!root) {
+        var path = loc.pathname;
+        var first = path.split("/")[1] || "";
+        if (/\/404\.html$/.test(path)) root = path.replace(/404\.html$/, "");
+        else if (/\.github\.io$/i.test(loc.hostname) && first && first.indexOf(".") === -1) root = "/" + first + "/";
+        else root = "/";
+      }
+
+      var base = document.createElement("base");
+      base.href = loc.protocol + "//" + loc.host + root;
+      document.head.appendChild(base);
+
+      // keep same-page "#hash" links (skip link) on this page instead of the site root
+      document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+          a.setAttribute("href", loc.pathname + loc.search + a.getAttribute("href"));
+        });
+      });
+    })();
+    document.write('<link rel="stylesheet" href="css/tokens.css"><link rel="stylesheet" href="css/base.css"><link rel="stylesheet" href="css/components.css"><link rel="stylesheet" href="css/pages.css"><script src="js/config.js" defer><\/script><script src="js/main.js" defer><\/script>');
+  </script>
+  <title>Page Not Found | Pixel Parlour</title>
+  <meta name="description" content="Sorry, we couldn&#x27;t find that page. Head back to the Pixel Parlour home page or get in touch.">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#FFF9FC">
+  <!-- Icons: .ico for older browsers, SVG for modern ones, PNG for iOS home screens -->
+  <link rel="icon" href="assets/img/favicon.ico" sizes="any">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+
+  <!-- Open Graph / Twitter. The image path is relative while you build; scripts/set-site-url.py
+       rewrites it to an absolute URL, which social platforms require. -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Pixel Parlour">
+  <meta property="og:title" content="Page Not Found | Pixel Parlour">
+  <meta property="og:description" content="Sorry, we couldn&#x27;t find that page. Head back to the Pixel Parlour home page or get in touch.">
+  <meta property="og:image" content="assets/img/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Pixel Parlour logo on a soft pink, lilac and mint background">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Page Not Found | Pixel Parlour">
+  <meta name="twitter:description" content="Sorry, we couldn&#x27;t find that page. Head back to the Pixel Parlour home page or get in touch.">
+  <meta name="twitter:image" content="assets/img/og-image.png">
+
+  <noscript>
+    <link rel="stylesheet" href="css/tokens.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/pages.css">
+  </noscript>
+
+  <!-- Swap no-js → js before first paint so reveal animations don't flash. With JS disabled this never
+       runs, so <html> keeps "no-js" and all content stays visible. Safety net: if main.js hasn't loaded
+       within 3s (blocked/failed), "no-reveal" un-hides any scroll-reveal content. -->
+  <script>document.documentElement.className = document.documentElement.className.replace("no-js", "js"); setTimeout(function () { if (!window.PIXEL_PARLOUR_READY) document.documentElement.className += " no-reveal"; }, 3000);</script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&amp;family=Fredoka:wght@500;600;700&amp;display=swap">
+
+
+
+  <!--
+    OPTIONAL ANALYTICS SLOT: nothing is tracked by default and this site sets no cookies.
+    If you add analytics later, paste the snippet here. A privacy-friendly, cookie-free tool
+    (e.g. Plausible, Fathom, GoatCounter or Cloudflare Web Analytics) avoids needing a cookie
+    banner in most regions. Paste the same snippet into every page's <head>. Example (Plausible):
+    <script defer data-domain="YOUR-DOMAIN.com" src="https://plausible.io/js/script.js"></script>
+  -->
+</head>
+<body id="top">
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- ============================== HEADER ============================== -->
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="logo" href="index.html" aria-label="Pixel Parlour home">
+        <svg class="logo__mark" viewBox="0 0 27 34" width="28" height="35" aria-hidden="true" focusable="false">
+          <rect x="0" y="0" width="6" height="6" rx="1.6" fill="#FF6FAE"/>
+          <rect x="7" y="0" width="6" height="6" rx="1.6" fill="#8B6BE8"/>
+          <rect x="14" y="0" width="6" height="6" rx="1.6" fill="#3CC9A0"/>
+          <rect x="0" y="7" width="6" height="6" rx="1.6" fill="#8B6BE8"/>
+          <rect x="21" y="7" width="6" height="6" rx="1.6" fill="#FF6FAE"/>
+          <rect x="0" y="14" width="6" height="6" rx="1.6" fill="#3CC9A0"/>
+          <rect x="7" y="14" width="6" height="6" rx="1.6" fill="#FF6FAE"/>
+          <rect x="14" y="14" width="6" height="6" rx="1.6" fill="#8B6BE8"/>
+          <rect x="0" y="21" width="6" height="6" rx="1.6" fill="#FF6FAE"/>
+          <rect x="0" y="28" width="6" height="6" rx="1.6" fill="#8B6BE8"/>
+        </svg>
+        <span>Pixel <span class="logo__accent">Parlour</span></span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+        <span class="nav-toggle__bars" aria-hidden="true"><span></span><span></span><span></span></span>
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="Main">
+        <ul class="site-nav__list" role="list">
+          <li><a class="site-nav__link" href="index.html">Home</a></li>
+          <li><a class="site-nav__link" href="services.html">Services</a></li>
+          <li><a class="site-nav__link" href="work.html">Work</a></li>
+          <li><a class="site-nav__link" href="about.html">About</a></li>
+          <li><a class="site-nav__link" href="contact.html">Contact</a></li>
+        </ul>
+        <a class="btn btn--primary btn--sm" href="contact.html">Book a free call</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+
+    <section class="page-hero" aria-labelledby="page-title">
+      <div class="hero__blobs" aria-hidden="true">
+        <span class="blob blob--1"></span>
+        <span class="blob blob--2"></span>
+        <span class="pixel pixel--1"></span>
+        <span class="pixel pixel--4"></span>
+        <span class="pixel pixel--5"></span>
+        <span class="pixel pixel--6"></span>
+      </div>
+      <div class="container page-hero__inner">
+        <svg class="lost-art" viewBox="0 0 220 170" aria-hidden="true" focusable="false"><ellipse cx="110" cy="160" rx="70" ry="6" fill="#EEE6FF"/><rect x="62" y="18" width="22" height="22" rx="5.9" fill="#FF6FAE"/><rect x="89" y="18" width="22" height="22" rx="5.9" fill="#8B6BE8"/><rect x="116" y="18" width="22" height="22" rx="5.9" fill="#3CC9A0"/><rect x="62" y="45" width="22" height="22" rx="5.9" fill="#8B6BE8"/><rect x="62" y="72" width="22" height="22" rx="5.9" fill="#3CC9A0"/><rect x="89" y="72" width="22" height="22" rx="5.9" fill="#FF6FAE"/><rect x="62" y="99" width="22" height="22" rx="5.9" fill="#FF6FAE"/><rect class="stray stray--1" x="160" y="30" width="22" height="22" rx="6" fill="#FF6FAE" transform="rotate(18 171 41)"/><rect class="stray stray--2" x="178" y="96" width="22" height="22" rx="6" fill="#8B6BE8" transform="rotate(-14 189 107)"/><rect class="stray stray--3" x="18" y="110" width="22" height="22" rx="6" fill="#8B6BE8" transform="rotate(24 29 121)"/></svg>
+        <p class="error-code" aria-hidden="true">404</p>
+        <h1 id="page-title">Oops, this page wandered off</h1>
+        <p class="text-lead">A few of our pixels went exploring and took this page with them. It may have moved, or the link might have a typo. Let's get you somewhere useful.</p>
+        <div class="page-hero__actions">
+          <a class="btn btn--primary" href="index.html">Back to home</a>
+          <a class="btn btn--secondary" href="contact.html">Contact us</a>
+        </div>
+        <p class="text-muted">Or try <a href="services.html">our services</a>, <a href="work.html">our work</a> or <a href="about.html">about us</a>.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================== FOOTER ============================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__grid">
+        <div class="site-footer__brand">
+          <a class="logo" href="index.html" aria-label="Pixel Parlour home">
+            <svg class="logo__mark" viewBox="0 0 27 34" width="28" height="35" aria-hidden="true" focusable="false">
+              <rect x="0" y="0" width="6" height="6" rx="1.6" fill="#FF6FAE"/>
+              <rect x="7" y="0" width="6" height="6" rx="1.6" fill="#8B6BE8"/>
+              <rect x="14" y="0" width="6" height="6" rx="1.6" fill="#3CC9A0"/>
+              <rect x="0" y="7" width="6" height="6" rx="1.6" fill="#8B6BE8"/>
+              <rect x="21" y="7" width="6" height="6" rx="1.6" fill="#FF6FAE"/>
+              <rect x="0" y="14" width="6" height="6" rx="1.6" fill="#3CC9A0"/>
+              <rect x="7" y="14" width="6" height="6" rx="1.6" fill="#FF6FAE"/>
+              <rect x="14" y="14" width="6" height="6" rx="1.6" fill="#8B6BE8"/>
+              <rect x="0" y="21" width="6" height="6" rx="1.6" fill="#FF6FAE"/>
+              <rect x="0" y="28" width="6" height="6" rx="1.6" fill="#8B6BE8"/>
+            </svg>
+            <span>Pixel <span class="logo__accent">Parlour</span></span>
+          </a>
+          <p class="site-footer__tagline">A cozy creative studio helping small and growing businesses get seen, get clicks and get customers.</p>
+          <ul class="social" role="list">
+            <li>
+              <a class="social__link" href="#" data-config="instagram" aria-label="Pixel Parlour on Instagram">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor"/></svg>
+              </a>
+            </li>
+            <li>
+              <a class="social__link" href="#" data-config="linkedin" aria-label="Pixel Parlour on LinkedIn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 10.5V16"/><path d="M8 7.6v.01"/><path d="M12 16v-5.5"/><path d="M12 13a2.5 2.5 0 0 1 5 0v3"/></svg>
+              </a>
+            </li>
+            <li>
+              <a class="social__link" href="#" data-config="facebook" aria-label="Pixel Parlour on Facebook">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 3.5h-2a4 4 0 0 0-4 4V10H6.5v3.5H9V21h3.5v-7.5H15l.5-3.5h-3V8a1 1 0 0 1 1-1H16V3.5z"/></svg>
+              </a>
+            </li>
+            <li>
+              <a class="social__link" href="#" data-config="x" aria-label="Pixel Parlour on X">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 4l6.6 8.8L4.3 20"/><path d="M4 4h4l12 16h-4z"/><path d="M19.7 4l-6.3 6.9"/></svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <nav aria-label="Footer pages">
+          <h2 class="site-footer__heading">Pages</h2>
+          <ul class="site-footer__list" role="list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="work.html">Work</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+
+        <nav aria-label="Footer services">
+          <h2 class="site-footer__heading">Services</h2>
+          <ul class="site-footer__list" role="list">
+            <li><a href="services.html#social">Social Media Management</a></li>
+            <li><a href="services.html#seo">SEO &amp; Content Marketing</a></li>
+            <li><a href="services.html#ads">Paid Ads (Google &amp; Meta)</a></li>
+            <li><a href="services.html#branding">Branding &amp; Web Design</a></li>
+          </ul>
+        </nav>
+
+        <div>
+          <h2 class="site-footer__heading">Contact</h2>
+          <ul class="site-footer__list" role="list">
+            <li><a href="mailto:hello@YOUR-DOMAIN.com" data-config="email">hello@YOUR-DOMAIN.com</a></li>
+            <li><a href="tel:+000000000000" data-config="phone">+00 00000 00000</a></li>
+            <li hidden data-config-show="whatsapp"><a href="#" data-config="whatsapp" data-config-attr="href">Chat on WhatsApp</a></li>
+            <li><span data-config="location">Your City, Your Country</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="site-footer__bottom">
+        <p>&copy; <span data-year>2026</span> Pixel Parlour. All rights reserved.</p>
+        <p><a href="contact.html">Book a free call</a></p>
+      </div>
+    </div>
+
+    <a class="back-to-top js-only" href="#top" aria-label="Back to top">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 19V5"/><path d="m5 12 7-7 7 7"/></svg>
+    </a>
+  </footer>
+</body>
+</html>

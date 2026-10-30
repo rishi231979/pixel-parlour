@@ -1,0 +1,33 @@
+<!--
+  Editable SOURCE for the social preview image (1200×630).
+  Most social platforms (Facebook, LinkedIn, X, WhatsApp, Slack) do NOT render SVG previews,
+  so the pages reference assets/img/og-image.png. If you edit this file, export it as a
+  1200×630 PNG (e.g. open in Figma/Inkscape/a browser and export) and overwrite og-image.png.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <filter id="blur" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="70"/></filter>
+  </defs>
+  <rect width="1200" height="630" fill="#FFF9FC"/>
+  <g filter="url(#blur)" opacity=".67">
+    <ellipse cx="150" cy="80" rx="330" ry="300" fill="#FFB3D3"/>
+    <ellipse cx="1130" cy="100" rx="270" ry="260" fill="#CDB8FF"/>
+    <ellipse cx="880" cy="640" rx="240" ry="220" fill="#BFF0DC"/>
+  </g>
+  <g transform="translate(150 213)">
+    <rect x="0"   y="0"   width="38" height="38" rx="10" fill="#FF6FAE"/>
+    <rect x="45"  y="0"   width="38" height="38" rx="10" fill="#8B6BE8"/>
+    <rect x="90"  y="0"   width="38" height="38" rx="10" fill="#3CC9A0"/>
+    <rect x="0"   y="45"  width="38" height="38" rx="10" fill="#8B6BE8"/>
+    <rect x="135" y="45"  width="38" height="38" rx="10" fill="#FF6FAE"/>
+    <rect x="0"   y="90"  width="38" height="38" rx="10" fill="#3CC9A0"/>
+    <rect x="45"  y="90"  width="38" height="38" rx="10" fill="#FF6FAE"/>
+    <rect x="90"  y="90"  width="38" height="38" rx="10" fill="#8B6BE8"/>
+    <rect x="0"   y="135" width="38" height="38" rx="10" fill="#FF6FAE"/>
+    <rect x="0"   y="180" width="38" height="38" rx="10" fill="#8B6BE8"/>
+  </g>
+  <text x="370" y="320" font-family="Fredoka, 'Arial Rounded MT Bold', sans-serif" font-size="104" font-weight="700" fill="#2B2433">Pixel <tspan fill="#B0306A">Parlour</tspan></text>
+  <text x="374" y="385" font-family="'DM Sans', Arial, sans-serif" font-size="36" font-weight="700" fill="#5E546C">Friendly digital marketing for growing brands</text>
+  <rect x="370" y="415" width="500" height="50" rx="25" fill="#FFFFFF"/>
+  <text x="398" y="449" font-family="'DM Sans', Arial, sans-serif" font-size="28" font-weight="700" fill="#5B3FC4">Social  ·  SEO  ·  Ads  ·  Branding</text>
+</svg>

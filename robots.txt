@@ -1,0 +1,6 @@
+# Pixel Parlour: allow all crawlers.
+# The Sitemap URL is updated by scripts/set-site-url.py
+User-agent: *
+Allow: /
+
+Sitemap: https://YOUR-USERNAME.github.io/pixel-parlour/sitemap.xml

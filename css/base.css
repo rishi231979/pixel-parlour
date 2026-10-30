@@ -1,0 +1,387 @@
+/* ==========================================================================
+   Pixel Parlour — Base: reset, typography, layout utilities
+   ========================================================================== */
+
+/* ---------- Modern reset ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* Smooth in-page scrolling is switched on by main.js only AFTER the page has loaded.
+   Setting it on <html> from the start makes Chrome abandon the jump to a #fragment
+   when arriving from another page (e.g. services.html#ads), leaving you at the top. */
+@media (prefers-reduced-motion: no-preference) {
+  html.smooth-scroll {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Anchor targets land below the sticky header instead of underneath it */
+[id] {
+  scroll-margin-top: calc(var(--header-height) + var(--space-4));
+}
+
+body {
+  min-height: 100vh;
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  line-height: var(--leading-body);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip; /* guard against decorative overflow; does not break position: sticky */
+  animation: page-in 380ms var(--ease-out) both; /* subtle load fade (CSS-only, so it never depends on JS) */
+}
+
+@keyframes page-in {
+  from { opacity: 0; }
+}
+
+img,
+svg,
+video,
+picture {
+  display: block;
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+  padding: 0;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+li,
+blockquote {
+  overflow-wrap: break-word;
+}
+
+/* ---------- Typography ---------- */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  line-height: var(--leading-tight);
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+h1 { font-size: var(--step-5); font-weight: 700; }
+h2 { font-size: var(--step-4); }
+h3 { font-size: var(--step-2); }
+h4 { font-size: var(--step-1); }
+h5 { font-size: var(--step-0); }
+h6 { font-size: var(--step--1); text-transform: uppercase; letter-spacing: 0.08em; }
+
+p {
+  text-wrap: pretty;
+}
+
+small {
+  font-size: var(--step--1);
+}
+
+.text-muted {
+  color: var(--color-text-muted);
+}
+
+.text-lead {
+  font-size: var(--step-1);
+  line-height: 1.55;
+  color: var(--color-text-muted);
+}
+
+a {
+  color: var(--color-lilac-700);
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.18em;
+  transition: color var(--duration-fast) ease;
+}
+
+a:hover {
+  color: var(--color-pink-700);
+}
+
+strong {
+  font-weight: 700;
+}
+
+::selection {
+  background: var(--color-pink-300);
+  color: var(--color-text);
+}
+
+/* ---------- Focus: visible on every interactive element ---------- */
+:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Skip-link target: focusable but no outline on the whole page */
+main:focus {
+  outline: none;
+}
+
+/* ---------- Skip link ---------- */
+.skip-link {
+  position: absolute;
+  top: var(--space-3);
+  left: var(--space-3);
+  z-index: var(--z-skip);
+  padding: var(--space-3) var(--space-5);
+  font-weight: 700;
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: 2px solid var(--color-lilac-700);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-200%);
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
+
+/* ---------- Layout utilities ---------- */
+.container {
+  width: 100%;
+  max-width: calc(var(--container-max) + var(--container-pad) * 2);
+  margin-inline: auto;
+  padding-inline: var(--container-pad);
+}
+
+.section {
+  position: relative;
+  padding-block: var(--section-pad);
+}
+
+.section--tint {
+  background: var(--gradient-soft);
+}
+
+.section--lilac {
+  background: linear-gradient(180deg, var(--color-bg) 0%, var(--color-lilac-100) 100%);
+}
+
+.cluster {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--cluster-gap, var(--space-4));
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* The hidden attribute always wins, even over component display rules */
+[hidden] {
+  display: none !important;
+}
+
+/* Elements that only make sense when JavaScript is running */
+.no-js .js-only {
+  display: none !important;
+}
+
+/* ---------- Scroll reveal ----------
+   Content is only hidden when <html> has the "js" class (added by the tiny inline
+   script in <head>), so with JavaScript off everything is visible. If JS is on but
+   main.js fails to load, the inline script adds "no-reveal" after 3s as a safety net. */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity var(--duration-slow) var(--ease-out),
+    transform var(--duration-slow) var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+/* Stagger helpers (avoid inline styles) */
+.reveal--d1 { --reveal-delay: 90ms; }
+.reveal--d2 { --reveal-delay: 180ms; }
+.reveal--d3 { --reveal-delay: 270ms; }
+
+.js .reveal.is-visible,
+.no-reveal .reveal {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- Placeholder spotting ----------
+   Every stand-in element gets a dashed outline so it is easy to find.
+   Remove this block (and the data-placeholder attributes) once real content is in. */
+[data-placeholder="true"] {
+  outline: 2px dashed rgba(139, 107, 232, 0.55);
+  outline-offset: 4px;
+}
+
+/* ---------- Reduced motion: switch every animation off ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------- Print ----------
+   Clean, ink-friendly output: no navigation, decoration or interactive chrome. */
+@media print {
+  *,
+  *::before,
+  *::after {
+    background: transparent !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+
+  body {
+    color: #000;
+    font-size: 11pt;
+  }
+
+  .skip-link,
+  .site-nav,
+  .nav-toggle,
+  .hero__blobs,
+  .cta-banner__deco,
+  .back-to-top,
+  .carousel__controls,
+  .filter-bar,
+  .social,
+  .work-card__open,
+  .badge--placeholder,
+  .art-panel,
+  .work-card__thumb,
+  form .btn,
+  dialog {
+    display: none !important;
+  }
+
+  .site-header {
+    position: static;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  [data-placeholder="true"] {
+    outline: none;
+  }
+
+  .section,
+  .page-hero,
+  .hero {
+    padding-block: 1.5rem;
+  }
+
+  .card,
+  .work-card,
+  .testimonial,
+  .accordion__item,
+  .tier,
+  .feature,
+  .process__step {
+    border: 1px solid #ccc;
+    break-inside: avoid;
+  }
+
+  /* carousel: print all slides stacked instead of a clipped scroller */
+  .carousel__track {
+    display: block;
+    overflow: visible;
+  }
+
+  .carousel__slide + .carousel__slide {
+    margin-top: 1rem;
+  }
+
+  a {
+    color: #000;
+    text-decoration: underline;
+  }
+
+  /* show where external and contact links go */
+  main a[href^="http"]::after,
+  main a[href^="mailto:"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.85em;
+    word-break: break-all;
+  }
+
+  .site-footer {
+    color: #000;
+    padding-top: 1rem;
+  }
+
+  .site-footer a,
+  .site-footer__heading,
+  .site-footer__brand .logo {
+    color: #000;
+  }
+}

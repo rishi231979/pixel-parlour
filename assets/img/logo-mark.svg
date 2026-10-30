@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 27 34" width="27" height="34" role="img" aria-label="Pixel Parlour">
+  <rect x="0"  y="0"  width="6" height="6" rx="1.6" fill="#FF6FAE"/>
+  <rect x="7"  y="0"  width="6" height="6" rx="1.6" fill="#8B6BE8"/>
+  <rect x="14" y="0"  width="6" height="6" rx="1.6" fill="#3CC9A0"/>
+  <rect x="0"  y="7"  width="6" height="6" rx="1.6" fill="#8B6BE8"/>
+  <rect x="21" y="7"  width="6" height="6" rx="1.6" fill="#FF6FAE"/>
+  <rect x="0"  y="14" width="6" height="6" rx="1.6" fill="#3CC9A0"/>
+  <rect x="7"  y="14" width="6" height="6" rx="1.6" fill="#FF6FAE"/>
+  <rect x="14" y="14" width="6" height="6" rx="1.6" fill="#8B6BE8"/>
+  <rect x="0"  y="21" width="6" height="6" rx="1.6" fill="#FF6FAE"/>
+  <rect x="0"  y="28" width="6" height="6" rx="1.6" fill="#8B6BE8"/>
+</svg>
